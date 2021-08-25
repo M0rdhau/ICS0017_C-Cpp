@@ -66,34 +66,40 @@ bool validateIDFormat(char* pNewItemID) {
 }
 
 void createBHeader(char first, char second, HEADER_B* p, ITEM2* pI) {
-	HEADER_A newHeader;
-	newHeader.cBegin = second;
-	newHeader.pItems = pI;
-	HEADER_B newBHeader;
-	newBHeader.cBegin = first;
-	newBHeader.pHeaderA = &newHeader;
-	while ((int) p->pNext->cBegin < (int) first && p->pNext != 0) { p = p->pNext; }
+	HEADER_A *newHeader;
+	newHeader = (HEADER_A *)malloc(sizeof(HEADER_A));
+	newHeader->cBegin = second;
+	newHeader->pItems = pI;
+	newHeader->pNext = 0;
+	HEADER_B *newBHeader;
+	newBHeader = (HEADER_B *)malloc(sizeof(HEADER_B));
+	newBHeader->cBegin = first;
+	newBHeader->pHeaderA = newHeader;
+	newBHeader->pNext = 0;
+	while (p->pNext != 0 && (int) p->pNext->cBegin < (int) first) { p = p->pNext; }
 	if (p->pNext == 0) {
-		p->pNext = &newBHeader;
+		p->pNext = newBHeader;
 	}
 	else {
-		newBHeader.pNext = p->pNext;
-		p->pNext = &newBHeader;
+		newBHeader->pNext = p->pNext;
+		p->pNext = newBHeader;
 	}
 	return;
 }
 
 void createAHeader(char second, HEADER_A* p, ITEM2 *pI) {
-	HEADER_A newHeader;
-	newHeader.cBegin = second;
-	newHeader.pItems = pI;
-	while ((int) p->pNext->cBegin < (int)second && p->pNext != 0) { p = p->pNext; }
+	HEADER_A* newHeader;
+	newHeader = (HEADER_A*)malloc(sizeof(HEADER_A));
+	newHeader->cBegin = second;
+	newHeader->pItems = pI;
+	newHeader->pNext = 0;
+	while (p->pNext != 0 && (int) p->pNext->cBegin < (int)second) { p = p->pNext; }
 	if (p->pNext == 0) {
-		p->pNext = &newHeader;
+		p->pNext = newHeader;
 	}
 	else {
-		newHeader.pNext = p->pNext;
-		p->pNext = &newHeader;
+		newHeader->pNext = p->pNext;
+		p->pNext = newHeader;
 	}
 	return;
 }
@@ -141,28 +147,74 @@ HEADER_B* InsertItem(HEADER_B* p, char* pNewItemID = 0) {
 
 void RemoveItem(HEADER_B* p, char* pItemID) {
 	if (validateIDFormat(pItemID)) {
-		printf("\r\n Item name: %s\r\n", pItemID);
 		char first = *pItemID;
 		char second = *(strchr(pItemID, ' ') + 1);
 		HEADER_B* searchP = p;
-		while (searchP->cBegin != first && searchP->pNext != 0) { searchP = searchP->pNext; }
+		HEADER_B* prevB = 0;
+		while (searchP->cBegin != first && searchP->pNext != 0) {
+			prevB = searchP;
+			searchP = searchP->pNext;
+		}
 		if (searchP->cBegin != first && searchP->pNext == 0) {
 			throw 1337;
 		}
 		else {
 			HEADER_A* searchA = searchP->pHeaderA;
-			while (searchA->cBegin != second && searchA->pNext != 0) { searchA = searchA->pNext; }
+			HEADER_A* prevA = 0;
+			while (searchA->cBegin != second && searchA->pNext != 0) {
+				prevA = searchA;
+				searchA = searchA->pNext;
+			}
 			if (searchA->cBegin != second && searchA->pNext == 0) {
 				throw 1337;
 			}
 			else {
 				ITEM2* searchI = (ITEM2*)searchA->pItems;
-				while (strcmp(searchI->pID, pItemID) != 0 && searchI->pNext != 0) { searchI = searchI->pNext; }
+				ITEM2* prev = 0;
+				while (strcmp(searchI->pID, pItemID) != 0 && searchI->pNext != 0) {
+					prev = searchI;
+					searchI = searchI->pNext;
+				}
 				if (strcmp(searchI->pID, pItemID) != 0 && searchI->pNext == 0) {
 					throw 1337;
 				}
 				else {
-					// delete the item
+					if (searchI == (ITEM2*)searchA->pItems) {
+						delete(searchI->pID);
+						delete(searchI->pTime);
+						searchA->pItems = searchI->pNext;
+						delete(searchI);
+					}
+					else if (searchI->pNext == 0) {
+						delete(searchI->pID);
+						delete(searchI->pTime);
+						prev->pNext = 0;
+						delete(searchI);
+					}
+					else {
+						delete(searchI->pID);
+						delete(searchI->pTime);
+						prev->pNext = searchI->pNext;
+						delete(searchI);
+					}
+					if (searchA->pItems == 0) {
+						if (prevA == 0) {
+							searchP->pHeaderA = searchA->pNext;
+						}
+						else {
+							prevA->pNext = searchA->pNext;
+						}
+						delete(searchA);
+						if (searchP->pHeaderA == 0) {
+							if (prevB == 0) {
+								p = searchP->pNext;
+							}
+							else {
+								prevB->pNext = searchP->pNext;
+							}
+							delete(searchP);
+						}
+					}
 					return;
 				}
 			}
@@ -175,11 +227,72 @@ void RemoveItem(HEADER_B* p, char* pItemID) {
 
 int main()
 {
-	HEADER_B* p = GetStruct1(2, 100);	
+	HEADER_B* p = GetStruct1(2, 30);	
 	PrintDataStructure(p);
-	char insert[] = "Light Yellow";
-	InsertItem(p, insert);
+	char insert[][5] = {
+		"Z A",
+		"Z Z",
+		"Z K",
+		"A Z",
+		"A A",
+		"A K",
+		"G Z",
+		"G A",
+		"G K",
+		"M A",
+		"M Ba",
+		"M Bb",
+		"M Z"
+	};
+	for (int i = 0; i < 13; i++) {
+		InsertItem(p, insert[i]);
+	}
+	try {
+		char insertNew[] = "M";
+		InsertItem(p, insertNew);
+	}
+	catch (...){
+		printf("invalid operation\n\r");
+	}
+	try {
+		char insertNew[] = "Ba";
+		InsertItem(p, insertNew);
+	}
+	catch (...) {
+		printf("invalid operation\n\r");
+	}
+	try {
+		char insertNew[] = "Mba";
+		InsertItem(p, insertNew);
+	}
+	catch (...) {
+		printf("invalid operation\n\r");
+	}
 	PrintDataStructure(p);
-
+	for (int i = 0; i < 13; i++) {
+		RemoveItem(p, insert[i]);
+	}
+	try {
+		char insertNew[] = "M";
+		RemoveItem(p, insertNew);
+	}
+	catch (...) {
+		printf("invalid operation\n\r");
+	}
+	try {
+		char insertNew[] = "Ba";
+		RemoveItem(p, insertNew);
+	}
+	catch (...) {
+		printf("invalid operation\n\r");
+	}
+	try {
+		char insertNew[] = "Mba";
+		RemoveItem(p, insertNew);
+	}
+	catch (...) {
+		printf("invalid operation\n\r");
+	}
+	PrintDataStructure(p);
 	return 0;
 }
