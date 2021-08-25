@@ -3,6 +3,7 @@
 #include "Items.h" 
 #include "Headers.h" 
 #include "ICS0017DataSource.h" 
+#pragma warning ( disable : 4996 )
 // IMPORTANT: follow the given order of *.h files: ICS0017DataSource.h must be 
 // the last
 void PrintItem2(item2* pI, int* n) {
@@ -64,9 +65,74 @@ bool validateIDFormat(char* pNewItemID) {
 	return true;
 }
 
-void InsertItem(HEADER_B* p, char* pNewItemID = 0) {
-	if (validateIDFormat(pNewItemID)) {
-	
+void createBHeader(char first, char second, HEADER_B* p, ITEM2* pI) {
+	HEADER_A newHeader;
+	newHeader.cBegin = second;
+	newHeader.pItems = pI;
+	HEADER_B newBHeader;
+	newBHeader.cBegin = first;
+	newBHeader.pHeaderA = &newHeader;
+	while ((int) p->pNext->cBegin < (int) first && p->pNext != 0) { p = p->pNext; }
+	if (p->pNext == 0) {
+		p->pNext = &newBHeader;
+	}
+	else {
+		newBHeader.pNext = p->pNext;
+		p->pNext = &newBHeader;
+	}
+	return;
+}
+
+void createAHeader(char second, HEADER_A* p, ITEM2 *pI) {
+	HEADER_A newHeader;
+	newHeader.cBegin = second;
+	newHeader.pItems = pI;
+	while ((int) p->pNext->cBegin < (int)second && p->pNext != 0) { p = p->pNext; }
+	if (p->pNext == 0) {
+		p->pNext = &newHeader;
+	}
+	else {
+		newHeader.pNext = p->pNext;
+		p->pNext = &newHeader;
+	}
+	return;
+}
+
+HEADER_B* InsertItem(HEADER_B* p, char* pNewItemID = 0) {
+	if (pNewItemID == 0 || validateIDFormat(pNewItemID)) {
+		ITEM2* pI = (ITEM2*)GetItem(2, pNewItemID);
+		printf("\r\n Item name: %s\r\n", pI->pID);
+		if (pNewItemID == 0) {
+			pNewItemID = pI->pID;
+		}
+		char first = *pNewItemID;
+		char second = *(strchr(pNewItemID, ' ') + 1);
+		HEADER_B* searchP = p;
+		while (searchP->cBegin != first && searchP->pNext != 0) { searchP = searchP->pNext; }
+		if (searchP->cBegin != first && searchP->pNext == 0) {
+			createBHeader(first, second, p, pI);
+			return p;
+		}
+		else {
+			HEADER_A* searchA = searchP->pHeaderA;
+			while (searchA->cBegin != second && searchA->pNext != 0) { searchA = searchA->pNext; }
+			if (searchA->cBegin != second && searchA->pNext == 0) {
+				createAHeader(second, searchP->pHeaderA, pI);
+				return p;
+			}
+			else {
+				ITEM2* searchI =(ITEM2 *) searchA->pItems;
+				while (searchI->pID != pI->pID && searchI->pNext != 0) { searchI = searchI->pNext; }
+				if (searchI->pID != pI->pID && searchI->pNext == 0) {
+					pI->pNext = (ITEM2 *) searchA->pItems;
+					searchA->pItems = pI;
+					return p;
+				}
+				else {
+					throw 1337;
+				}
+			}
+		}
 	}
 	else {
 		throw 1337;
@@ -76,6 +142,9 @@ void InsertItem(HEADER_B* p, char* pNewItemID = 0) {
 int main()
 {
 	HEADER_B* p = GetStruct1(2, 100);	
+	PrintDataStructure(p);
+	char insert[] = "Light Yellow";
+	InsertItem(p, insert);
 	PrintDataStructure(p);
 	return 0;
 }
