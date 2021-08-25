@@ -122,14 +122,48 @@ HEADER_B* InsertItem(HEADER_B* p, char* pNewItemID = 0) {
 			}
 			else {
 				ITEM2* searchI =(ITEM2 *) searchA->pItems;
-				while (searchI->pID != pI->pID && searchI->pNext != 0) { searchI = searchI->pNext; }
-				if (searchI->pID != pI->pID && searchI->pNext == 0) {
+				while (strcmp(searchI->pID, pI->pID) != 0 && searchI->pNext != 0) { searchI = searchI->pNext; }
+				if (strcmp(searchI->pID, pI->pID) != 0 && searchI->pNext == 0) {
 					pI->pNext = (ITEM2 *) searchA->pItems;
 					searchA->pItems = pI;
 					return p;
 				}
 				else {
 					throw 1337;
+				}
+			}
+		}
+	}
+	else {
+		throw 1337;
+	}
+}
+
+void RemoveItem(HEADER_B* p, char* pItemID) {
+	if (validateIDFormat(pItemID)) {
+		printf("\r\n Item name: %s\r\n", pItemID);
+		char first = *pItemID;
+		char second = *(strchr(pItemID, ' ') + 1);
+		HEADER_B* searchP = p;
+		while (searchP->cBegin != first && searchP->pNext != 0) { searchP = searchP->pNext; }
+		if (searchP->cBegin != first && searchP->pNext == 0) {
+			throw 1337;
+		}
+		else {
+			HEADER_A* searchA = searchP->pHeaderA;
+			while (searchA->cBegin != second && searchA->pNext != 0) { searchA = searchA->pNext; }
+			if (searchA->cBegin != second && searchA->pNext == 0) {
+				throw 1337;
+			}
+			else {
+				ITEM2* searchI = (ITEM2*)searchA->pItems;
+				while (strcmp(searchI->pID, pItemID) != 0 && searchI->pNext != 0) { searchI = searchI->pNext; }
+				if (strcmp(searchI->pID, pItemID) != 0 && searchI->pNext == 0) {
+					throw 1337;
+				}
+				else {
+					// delete the item
+					return;
 				}
 			}
 		}
@@ -146,5 +180,6 @@ int main()
 	char insert[] = "Light Yellow";
 	InsertItem(p, insert);
 	PrintDataStructure(p);
+
 	return 0;
 }
