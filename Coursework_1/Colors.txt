@@ -1,0 +1,936 @@
+﻿Absolute Zero
+Acid Green
+Aero
+Aero Blue
+Air Superiority Blue
+Alabaster
+Alice Blue
+Alien Armpit
+Alloy Orange
+Almond
+Amazon
+Amber
+Amethyst
+Anti-flash White
+Antique Brass
+Antique Bronze
+Antique Fuchsia
+Antique Ruby
+Antique White
+Ao English
+Apple Green
+Apricot
+Aqua
+Aquamarine
+Arctic Lime
+Army Green
+Artichoke
+Arylide Yellow
+Ash Gray
+Asparagus
+Atomic Tangerine
+Auburn
+Aureolin
+AuroMetalSaurus
+Avocado
+Azure
+Baby Blue
+Baby Blue Eyes
+Baby Pink
+Baby Powder
+Baker-Miller Pink
+Banana Mania
+Barbie Pink
+Barbie Pink Pantone
+Barn Red
+Battleship Grey
+Beau Blue
+Beaver
+Beige
+Bisque
+Bistre
+Bistre Brown
+Bitter Lemon
+Bitter Lime
+Bittersweet
+Bittersweet Shimmer
+Black
+Black Bean
+Black Chocolate
+Black Coffee
+Black Coral
+Black Olive
+Black Shadows
+Blanched Almond
+Blast-off Bronze
+Bleu De France
+Blizzard Blue
+Blond
+Blood Red
+Blue
+Blue Crayola
+Blue Munsell
+Blue NCS
+Blue Pantone
+Blue Pigment
+Blue RYB
+Blue Bell
+Blue-gray
+Blue-green
+Blue-green Color Wheel
+Blue Jeans
+Blue Sapphire
+Blue-violet
+Blue-violet Crayola
+Blue-violet Color Wheel
+Blue Yonder
+Bluetiful
+Blush
+Bole
+Bondi Blue
+Bone
+Bottle Green
+Brandy
+Brick Red
+Bright Green
+Bright Lilac
+Bright Maroon
+Bright Navy Blue
+Bright Yellow Crayola
+Brilliant Rose
+Brink Pink
+British Racing Green
+Bronze
+Brown
+Brown Sugar
+Brunswick Green
+Bubbles
+Bud Green
+Buff
+Burgundy
+Burlywood
+Burnished Brown
+Burnt Orange
+Burnt Sienna
+Burnt Umber
+Byzantine
+Byzantium
+Cadet
+Cadet Blue
+Cadet Blue Crayola
+Cadet Grey
+Cadmium Green
+Cadmium Orange
+Cadmium Red
+Cadmium Yellow
+Cafe Au Lait
+Cafe Noir
+Cambridge Blue
+Camel
+Cameo Pink
+Canary
+Canary Yellow
+Candy Apple Red
+Candy Pink
+Capri
+Caput Mortuum
+Cardinal
+Caribbean Green
+Carmine
+Carnation Pink
+Carnelian
+Carolina Blue
+Carrot Orange
+Castleton Green
+Catawba
+Cedar Chest
+Celadon
+Celadon Blue
+Celadon Green
+Celeste
+Celtic Blue
+Cerise
+Cerulean
+Cerulean Blue
+Cerulean Frost
+Cerulean Crayola
+CG Blue
+CG Red
+Champagne
+Champagne Pink
+Charcoal
+Charleston Green
+Charm Pink
+Chartreuse Traditional
+Chartreuse Web
+Cherry Blossom Pink
+Chestnut
+China Pink
+China Rose
+Chinese Red
+Chinese Violet
+Chinese Yellow
+Chocolate Traditional
+Chocolate Web
+Chrome Yellow
+Cinereous
+Cinnabar
+Cinnamon Satin
+Citrine
+Citron
+Claret
+Cobalt Blue
+Cocoa Brown
+Coffee
+Columbia Blue
+Congo Pink
+Cool Grey
+Copper
+Copper Crayola
+Copper Penny
+Copper Red
+Copper Rose
+Coquelicot
+Coral
+Coral Pink
+Cordovan
+Corn
+Cornflower Blue
+Cornsilk
+Cosmic Cobalt
+Cosmic Latte
+Cosmos Pink
+Coyote Brown
+Cotton Candy
+Cream
+Crimson
+Crimson UA
+Cultured
+Cyan
+Cyan Process
+Cyber Grape
+Cyber Yellow
+Cyclamen
+Dark Blue-gray
+Dark Brown
+Dark Byzantium
+Dark Cornflower Blue
+Dark Cyan
+Dark Electric Blue
+Dark Goldenrod
+Dark Green
+Dark Jungle Green
+Dark Khaki
+Dark Lava
+Dark Liver
+Dark Liver Horses
+Dark Magenta
+Dark Moss Green
+Dark Olive Green
+Dark Orange
+Dark Orchid
+Dark Pastel Green
+Dark Purple
+Dark Red
+Dark Salmon
+Dark Sea Green
+Dark Sienna
+Dark Sky Blue
+Dark Slate Blue
+Dark Slate Gray
+Dark Spring Green
+Dark Turquoise
+Dark Violet
+Dartmouth Green
+Deep Cerise
+Deep Champagne
+Deep Chestnut
+Deep Jungle Green
+Deep Pink
+Deep Saffron
+Deep Sky Blue
+Deep Space Sparkle
+Deep Taupe
+Denim
+Denim Blue
+Desert
+Desert Sand
+Dim Gray
+Dingy Dungeon
+Dodger Blue
+Dogwood Rose
+Drab
+Duke Blue
+Dutch White
+Earth Yellow
+Ebony
+Ecru
+Eerie Black
+Eggplant
+Eggshell
+Egyptian Blue
+Electric Blue
+Electric Green
+Electric Indigo
+Electric Lime
+Electric Purple
+Electric Violet
+Emerald
+Eminence
+English Green
+English Lavender
+English Red
+English Vermillion
+English Violet
+Erin
+Eton Blue
+Fallow
+Falu Red
+Fandango
+Fandango Pink
+Fashion Fuchsia
+Fawn
+Feldgrau
+Fern Green
+Field Drab
+Fiery Rose
+Firebrick
+Fire Engine Red
+Fire Opal
+Flame
+Flax
+Flesh
+Flickr Blue
+Flickr Pink
+Flirt
+Floral White
+Fluorescent Blue
+Forest Green Crayola
+Forest Green Traditional
+Forest Green Web
+French Beige
+French Bistre
+French Blue
+French Fuchsia
+French Lilac
+French Lime
+French Mauve
+French Pink
+French Raspberry
+French Rose
+French Sky Blue
+French Violet
+Frostbite
+Fuchsia
+Fuchsia Crayola
+Fuchsia Purple
+Fuchsia Rose
+Fulvous
+Fuzzy Wuzzy
+Gainsboro
+Gamboge
+Generic Viridian
+Ghost White
+Glaucous
+Glossy Grape
+GO Green
+Gold
+Gold Metallic
+Gold Web Golden
+Gold Crayola
+Gold Fusion
+Golden Brown
+Golden Poppy
+Golden Yellow
+Goldenrod
+Granite Gray
+Granny Smith Apple
+Green
+Green Crayola
+Green Munsell
+Green NCS
+Green Pantone
+Green Pigment
+Green RYB
+Green-blue
+Green-blue Crayola
+Green-cyan
+Green Lizard
+Green Sheen
+Green-yellow
+Green-yellow Crayola
+Grullo
+Gunmetal
+Han Blue
+Han Purple
+Hansa Yellow
+Harlequin
+Harvest Gold
+Heat Wave
+Heliotrope
+Heliotrope Gray
+Hollywood Cerise
+Honeydew
+Honolulu Blue
+Hot Magenta
+Hot Pink
+Hunter Green
+Iceberg
+Icterine
+Illuminating Emerald
+Imperial Red
+Inchworm
+Independence
+India Green
+Indian Red
+Indian Yellow
+Indigo
+Indigo Blue
+Indigo Dye
+International Klein Blue
+International Orange Aerospace
+International Orange Engineering
+International Orange Golden Gate Bridge
+Iris
+Irresistible
+Isabelline
+Islamic Green
+Italian Sky Blue
+Ivory
+Jade
+Jasmine
+Jazzberry Jam
+Jet
+Jonquil
+June Bud
+Jungle Green
+Kelly Green
+Keppel
+Key Lime
+Kobe
+Kobi
+Kobicha
+Kombu Green
+KSU Purple
+Languid Lavender
+Lapis Lazuli
+Laser Lemon
+Laurel Green
+Lava
+Lavender Floral
+Lavender Web
+Lavender Blue
+Lavender Blush
+Lavender Gray
+Lavender Magenta
+Lawn Green
+Lemon
+Lemon Chiffon
+Lemon Curry
+Lemon Glacier
+Lemon Meringue
+Lemon Yellow
+Lemon Yellow Crayola
+Liberty
+Light Blue
+Light Coral
+Light Cornflower Blue
+Light Cyan
+Light French Beige
+Light Goldenrod Yellow
+Light Gray
+Light Green
+Light Orange
+Light Periwinkle
+Light Pink
+Light Salmon
+Light Sea Green
+Light Sky Blue
+Light Slate Gray
+Light Steel Blue
+Light Yellow
+Lilac
+Lilac Luster
+Lime Color Wheel
+Lime Green
+Lincoln Green
+Linen
+Lion
+Liseran Purple
+Little Boy Blue
+Liver
+Liver Dogs
+Liver Organ
+Liver Chestnut
+Livid
+Macaroni And Cheese
+Madder Lake
+Magenta
+Magenta Crayola
+Magenta Dye
+Magenta Pantone
+Magenta Process
+Magenta Haze
+Magic Mint
+Magnolia
+Mahogany
+Maize
+Maize Crayola
+Majorelle Blue
+Malachite
+Manatee
+Mandarin
+Mango
+Mango Tango
+Mantis
+Mardi Gras
+Marigold
+Maroon Crayola
+Mauve
+Mauve Taupe
+Mauvelous
+Maximum Blue
+Maximum Blue Green
+Maximum Blue Purple
+Maximum Green
+Maximum Green Yellow
+Maximum Purple
+Maximum Red
+Maximum Red Purple
+Maximum Yellow
+Maximum Yellow Red
+May Green
+Maya Blue
+Medium Aquamarine
+Medium Blue
+Medium Candy Apple Red
+Medium Carmine
+Medium Champagne
+Medium Orchid
+Medium Purple
+Medium Sea Green
+Medium Slate Blue
+Medium Spring Green
+Medium Turquoise
+Medium Violet-red
+Mellow Apricot
+Mellow Yellow
+Melancholy
+Melon
+Metallic Gold
+Metallic Seaweed
+Metallic Sunburst
+Mexican Pink
+Middle Blue
+Middle Blue Green
+Middle Blue Purple
+Middle Grey
+Middle Green
+Middle Green Yellow
+Middle Purple
+Middle Red
+Middle Red Purple
+Middle Yellow
+Middle Yellow Red
+Midnight
+Midnight Blue
+Midnight Green Eagle Green
+Mikado Yellow
+Mimi Pink
+Mindaro
+Ming
+Minion Yellow
+Mint
+Mint Cream
+Mint Green
+Misty Moss
+Misty Rose
+Mode Beige
+Morning Blue
+Moss Green
+Mountain Meadow
+Mountbatten Pink
+MSU Green
+Mulberry
+Mulberry Crayola
+Mustard
+Myrtle Green
+Mystic
+Mystic Maroon
+Nadeshiko Pink
+Naples Yellow
+Navajo White
+Navy Blue
+Navy Blue Crayola
+Neon Blue
+Neon Green
+New York Pink
+Nickel
+Non-photo Blue
+Nyanza
+Ocean Blue
+Ocean Green
+Ochre
+Old Burgundy
+Old Gold
+Old Lace
+Old Lavender
+Old Mauve
+Old Rose
+Old Silver
+Olive
+Olive Green
+Olivine
+Onyx
+Opal
+Opera Mauve
+Orange
+Orange Color Wheel
+Orange Crayola
+Orange Pantone
+Orange RYB
+Orange Web
+Orange Peel
+Orange-red
+Orange-red Crayola
+Orange Soda
+Orange-yellow
+Orange-yellow Crayola
+Orchid
+Orchid Pink
+Orchid Crayola
+Outer Space Crayola
+Outrageous Orange
+Oxblood
+Oxford Blue
+OU Crimson Red
+Pacific Blue
+Pakistan Green
+Palatinate Purple
+Pale Aqua
+Pale Cerulean
+Pale Pink
+Pale Purple Pantone
+Pale Silver
+Pale Spring Bud
+Pansy Purple
+Paolo Veronese Green
+Papaya Whip
+Paradise Pink
+Paris Green
+Pastel Pink
+Patriarch
+Peach
+Peach
+Peach Puff
+Pear
+Pearly Purple
+Periwinkle
+Periwinkle Crayola
+Permanent Geranium Lake
+Persian Blue
+Persian Green
+Persian Indigo
+Persian Orange
+Persian Pink
+Persian Plum
+Persian Red
+Persian Rose
+Persimmon
+Pewter Blue
+Phlox
+Phthalo Blue
+Phthalo Green
+Picotee Blue
+Pictorial Carmine
+Piggy Pink
+Pine Green
+Pine Tree
+Pink
+Pink Pantone
+Pink Flamingo
+Pink Lace
+Pink Lavender
+Pink Sherbet
+Pistachio
+Platinum
+Plum
+Plum Web
+Plump Purple
+Polished Pine
+Pomp And Power
+Popstar
+Portland Orange
+Powder Blue
+Princess Perfume
+Princeton Orange
+Prune
+Prussian Blue
+Psychedelic Purple
+Puce
+Pullman Brown UPS Brown
+Pumpkin
+Purple
+Purple HTML
+Purple Munsell
+Purple Mountain Majesty
+Purple Navy
+Purple Pizzazz
+Purple Plum
+Purpureus
+Queen Blue
+Queen Pink
+Quick Silver
+Quinacridone Magenta
+Radical Red
+Raisin Black
+Rajah
+Raspberry
+Raspberry Glace
+Raspberry Rose
+Raw Sienna
+Raw Umber
+Razzle Dazzle Rose
+Razzmatazz
+Razzmic Berry
+Rebecca Purple
+Red
+Red Crayola
+Red Munsell
+Red NCS
+Red Pantone
+Red Pigment
+Red RYB
+Red-orange
+Red-orange Crayola
+Red-orange Color Wheel
+Red-purple
+Red Salsa
+Red-violet
+Red-violet Crayola
+Red-violet Color Wheel
+Redwood
+Resolution Blue
+Rhythm
+Rich Black
+Rifle Green
+Robin Egg Blue
+Rocket Metallic
+Roman Silver
+Rose
+Rose Bonbon
+Rose Dust
+Rose Ebony
+Rose Madder
+Rose Pink
+Rose Quartz
+Rose Red
+Rose Taupe
+Rose Vale
+Rosewood
+Rosso Corsa
+Rosy Brown
+Royal Blue Dark
+Royal Blue Light
+Royal Purple
+Royal Yellow
+Ruber
+Rubine Red
+Ruby
+Ruby Red
+Rufous
+Russet
+Russian Green
+Russian Violet
+Rust
+Rusty Red
+Sacramento State Green
+Saddle Brown
+Safety Orange
+Safety Orange Blaze Orange
+Safety Yellow
+Saffron
+Sage
+Salmon
+Salmon Pink
+Sand
+Sand Dune
+Sandy Brown
+Sap Green
+Sapphire
+Sapphire Blue
+Sapphire Crayola
+Satin Sheen Gold
+Scarlet
+Schauss Pink
+School Bus Yellow
+Sea Green
+Sea Green Crayola
+Seal Brown
+Seashell
+Selective Yellow
+Sepia
+Shadow
+Shadow Blue
+Shamrock Green
+Sheen Green
+Shimmering Blush
+Shiny Shamrock
+Shocking Pink
+Shocking Pink Crayola
+Sienna
+Silver
+Silver Crayola
+Silver Metallic
+Silver Chalice
+Silver Pink
+Silver Sand
+Sinopia
+Sizzling Red
+Sizzling Sunrise
+Skobeloff
+Sky Blue
+Sky Blue Crayola
+Sky Magenta
+Slate Blue
+Slate Gray
+Slimy Green
+Smitten
+Smoky Black
+Snow
+Solid Pink
+Sonic Silver
+Space Cadet
+Spanish Bistre
+Spanish Blue
+Spanish Carmine
+Spanish Gray
+Spanish Green
+Spanish Orange
+Spanish Pink
+Spanish Red
+Spanish Sky Blue
+Spanish Violet
+Spanish Viridian
+Spring Bud
+Spring Frost
+Spring Green
+Spring Green Crayola
+Star Command Blue
+Steel Blue
+Steel Pink
+Steel Teal
+Stil De Grain Yellow
+Straw
+Sugar Plum
+Sunglow
+Sunray
+Sunset
+Super Pink
+Sweet Brown
+Tan
+Tan Crayola
+Tangerine
+Tango Pink
+Tart Orange
+Taupe
+Taupe Gray
+Tea Green
+Tea Rose
+Tea Rose
+Teal
+Teal Blue
+Telemagenta
+Terra Cotta
+Thistle
+Thulian Pink
+Tickle Me Pink
+Tiffany Blue
+Timberwolf
+Titanium Yellow
+Tomato
+Tropical Rain Forest
+True Blue
+Tufts Blue
+Tumbleweed
+Turquoise
+Turquoise Blue
+Turquoise Green
+Turtle Green
+Tuscan
+Tuscan Brown
+Tuscan Red
+Tuscan Tan
+Tuscany
+Twilight Lavender
+Tyrian Purple
+UA Blue
+UA Red
+Ultramarine
+Ultramarine Blue
+Ultra Pink
+Ultra Red
+Umber
+Unbleached Silk
+United Nations Blue
+Unmellow Yellow
+UP Forest Green
+UP Maroon
+Upsdell Red
+Uranian Blue
+USAFA Blue
+Van Dyke Brown
+Vanilla
+Vanilla Ice
+Vegas Gold
+Venetian Red
+Verdigris
+Vermilion
+Vermilion
+Veronica
+Violet
+Violet Color Wheel
+Violet Crayola
+Violet RYB
+Violet Web
+Violet-blue
+Violet-blue Crayola
+Violet-red
+Viridian
+Viridian Green
+Vivid Burgundy
+Vivid Sky Blue
+Vivid Tangerine
+Vivid Violet
+Volt
+Warm Black
+Wheat
+White
+Wild Blue Yonder
+Wild Orchid
+Wild Strawberry
+Wild Watermelon
+Windsor Tan
+Wine
+Wine Dregs
+Winter Sky
+Wintergreen Dream
+Wisteria
+Wood Brown
+Yale Blue
+Yellow
+Yellow Crayola
+Yellow Munsell
+Yellow NCS
+Yellow Pantone
+Yellow Process
+Yellow RYB
+Yellow-green
+Yellow-green Crayola
+Yellow-green Color Wheel
+Yellow Orange
+Yellow Orange Color Wheel
+Yellow Sunshine
+YInMn Blue
+Zaffre
+Zomp
