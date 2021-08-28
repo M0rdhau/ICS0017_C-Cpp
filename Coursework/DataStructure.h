@@ -7,6 +7,7 @@
 #include "ICS0017DataSource.h"
 using namespace std;
 enum class IterOperation {Count, Print, Delete, Compare, None};
+enum class LastMatch {Match, NoMatch, Nil};
 class DataStructure
 {
 private:
@@ -14,14 +15,16 @@ private:
 	void InsertItem(ITEM2*);
 	void CreateBHeader(char, char, ITEM2*);
 	void CreateAHeader(char, HEADER_A*, ITEM2*);
-	void RemoveItem(char*);
-	void IterItem2(item2*, HEADER_B*);
-	void IterHeaderA(HEADER_A*, HEADER_B*);
-	void IterHeaderB(HEADER_B*, HEADER_B*);
-	void Iterate(HEADER_B*);
+	ITEM2* FindItem(char*, bool);
+	// Functions for iteration - so that less copy-pasted code occurs
+	void IterItem2(item2*, DataStructure*);
+	void IterHeaderA(HEADER_A*, DataStructure*);
+	void IterHeaderB(HEADER_B*, DataStructure*);
+	void Iterate(DataStructure*);
 	void PrintDataStructure();
 	int itemAmt = 0;
 	IterOperation op;
+	LastMatch match;
 public:
 	//Empty datastructure
 	DataStructure();

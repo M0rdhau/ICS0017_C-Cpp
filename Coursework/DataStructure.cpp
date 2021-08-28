@@ -71,7 +71,7 @@ void DataStructure::InsertItem(ITEM2* pI) {
 	}
 }
 
-void DataStructure::RemoveItem(char* pItemID) {
+ITEM2* DataStructure::FindItem(char* pItemID, bool deleteItem) {
 	char first = *pItemID;
 	char second = *(strchr(pItemID, ' ') + 1);
 	HEADER_B* searchP = this->EntryP;
@@ -81,7 +81,7 @@ void DataStructure::RemoveItem(char* pItemID) {
 		searchP = searchP->pNext;
 	}
 	if (searchP->cBegin != first && searchP->pNext == 0) {
-		throw 1337;
+		return false;
 	}
 	else {
 		HEADER_A* searchA = searchP->pHeaderA;
@@ -91,7 +91,7 @@ void DataStructure::RemoveItem(char* pItemID) {
 			searchA = searchA->pNext;
 		}
 		if (searchA->cBegin != second && searchA->pNext == 0) {
-			throw 1337;
+			return 0;
 		}
 		else {
 			ITEM2* searchI = (ITEM2*)searchA->pItems;
@@ -101,9 +101,9 @@ void DataStructure::RemoveItem(char* pItemID) {
 				searchI = searchI->pNext;
 			}
 			if (strcmp(searchI->pID, pItemID) != 0 && searchI->pNext == 0) {
-				throw 1337;
+				return 0;
 			}
-			else {
+			else if(deleteItem){
 				if (searchI == (ITEM2*)searchA->pItems) {
 					delete(searchI->pID);
 					delete(searchI->pTime);
@@ -140,13 +140,16 @@ void DataStructure::RemoveItem(char* pItemID) {
 						delete(searchP);
 					}
 				}
-				return;
+				return 0;
+			}
+			else {
+				return searchI;
 			}
 		}
 	}
 }
 
-void DataStructure::IterItem2(item2* pI, HEADER_B* pComp = 0) {
+void DataStructure::IterItem2(item2* pI, DataStructure* pComp = 0) {
 	if (this->op == IterOperation::Count || this->op == IterOperation::Print) {
 		this->itemAmt++;
 		if (this->op == IterOperation::Print) {
@@ -162,9 +165,16 @@ void DataStructure::IterItem2(item2* pI, HEADER_B* pComp = 0) {
 		delete pI->pID;
 		delete pI->pTime;
 	}
+	else if (this->op == IterOperation::Compare) {
+		ITEM2* pOther = pComp->GetItem(pI->pID);
+		if (pOther == 0) {
+			return;
+		}
+	}
+	return;
 }
 
-void DataStructure::IterHeaderA(HEADER_A* pA, HEADER_B* pComp = 0) {
+void DataStructure::IterHeaderA(HEADER_A* pA, DataStructure* pComp = 0) {
 	ITEM2* pI = (ITEM2*)pA->pItems;
 	while (pI->pNext != 0) {
 		IterItem2(pI, pComp);
@@ -179,9 +189,10 @@ void DataStructure::IterHeaderA(HEADER_A* pA, HEADER_B* pComp = 0) {
 		ITEM2* pPrev = pI;
 		delete(pPrev);
 	}
+	return;
 }
 
-void DataStructure::IterHeaderB(HEADER_B* p, HEADER_B* pComp = 0) {
+void DataStructure::IterHeaderB(HEADER_B* p, DataStructure* pComp = 0) {
 	HEADER_A* pA = p->pHeaderA;
 	while (pA->pNext != 0) {
 		IterHeaderA(pA, pComp);
@@ -196,9 +207,10 @@ void DataStructure::IterHeaderB(HEADER_B* p, HEADER_B* pComp = 0) {
 		HEADER_A* pPrev = pA;
 		delete(pPrev);
 	}
+	return;
 }
 
-void DataStructure::Iterate(HEADER_B* pComp = 0) {
+void DataStructure::Iterate(DataStructure* pComp = 0) {
 	HEADER_B* pB = this->EntryP;
 	while (pB->pNext != 0) {
 		IterHeaderB(pB, pComp);
@@ -213,12 +225,14 @@ void DataStructure::Iterate(HEADER_B* pComp = 0) {
 		HEADER_B* pPrev = pB;
 		delete(pPrev);
 	}
+	return;
 }
 
 void DataStructure::PrintDataStructure() {
 	this->op = IterOperation::Print;
 	Iterate();
 	this->op = IterOperation::None;
+	return;
 }
 
 
@@ -248,5 +262,9 @@ void DataStructure::operator+(ITEM2* p) {
 	this->InsertItem(p);
 }
 void DataStructure::operator-(char* c) {
-	this->RemoveItem(c);
+	this->FindItem(c, true);
+	return;
+}
+ITEM2* DataStructure::GetItem(char* c) {
+	this->FindItem(c, false);
 }
