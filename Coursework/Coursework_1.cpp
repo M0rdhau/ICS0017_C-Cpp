@@ -12,7 +12,6 @@ void PrintItem2(item2* pI, int* n) {
 	int hour = pI->pTime->Hour;
 	int minute = pI->pTime->Min;
 	int second = pI->pTime->Sec;
-
 	printf("%d) %s %u %d:%d:%d \r\n", *n, id, Code, hour, minute, second);
 	(*n)++;
 }

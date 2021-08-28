@@ -1,10 +1,12 @@
 #pragma once
 #include <iostream>
+#include "stdarg.h"
 #include "DateTime.h" 
 #include "Items.h" 
 #include "Headers.h" 
-#include "ICS0017DataSource.h" 
+#include "ICS0017DataSource.h"
 using namespace std;
+enum class IterOperation {Count, Print, Delete, Compare, None};
 class DataStructure
 {
 private:
@@ -12,11 +14,14 @@ private:
 	void InsertItem(ITEM2*);
 	void CreateBHeader(char, char, ITEM2*);
 	void CreateAHeader(char, HEADER_A*, ITEM2*);
-	void RemoveItem(char* pItemID);
-	void PrintItem2(item2* pI, int* n);
-	void PrintHeaderA(HEADER_A* pA, int* n);
-	void PrintHeaderB(HEADER_B* p, int* n);
+	void RemoveItem(char*);
+	void IterItem2(item2*, HEADER_B*);
+	void IterHeaderA(HEADER_A*, HEADER_B*);
+	void IterHeaderB(HEADER_B*, HEADER_B*);
+	void Iterate(HEADER_B*);
 	void PrintDataStructure();
+	int itemAmt = 0;
+	IterOperation op;
 public:
 	//Empty datastructure
 	DataStructure();
