@@ -1,8 +1,12 @@
 #include <iostream> 
+#include <iomanip>
+#include "stdarg.h"
 #include "DateTime.h" 
 #include "Items.h" 
 #include "Headers.h" 
-#include "ICS0017DataSource.h" 
+#include "ICS0017DataSource.h"
+#include "DataStructure.h"
+using namespace std;
 #pragma warning ( disable : 4996 )
 // IMPORTANT: follow the given order of *.h files: ICS0017DataSource.h must be 
 // the last
@@ -224,9 +228,8 @@ void RemoveItem(HEADER_B* p, char* pItemID) {
 	}
 }
 
-int main()
-{
-	HEADER_B* p = GetStruct1(2, 30);	
+void coursework1() {
+	HEADER_B* p = GetStruct1(2, 30);
 	PrintDataStructure(p);
 	char insert[][5] = {
 		"Z A",
@@ -250,7 +253,7 @@ int main()
 		char insertNew[] = "M";
 		InsertItem(p, insertNew);
 	}
-	catch (...){
+	catch (...) {
 		printf("invalid operation\n\r");
 	}
 	try {
@@ -293,5 +296,36 @@ int main()
 		printf("invalid operation\n\r");
 	}
 	PrintDataStructure(p);
+}
+
+ITEM2* copyItem(ITEM2* p) {
+	ITEM2* it = new ITEM2;
+	it->pNext = 0;
+	int n;
+	char* pNewID = new char[n = strlen(p->pID) + 1];
+	strcpy_s(pNewID, n, p->pID);
+	TIME* time = new TIME;
+	time->Hour = p->pTime->Hour;
+	time->Min = p->pTime->Min;
+	time->Sec = p->pTime->Sec;
+	it->Code = p->Code;
+	it->pID = pNewID;
+	it->pTime = time;
+	return it;
+}
+
+
+
+int main()
+{
+	char name[] = "Phtahlo Blue";
+	ITEM2* it = (ITEM2*)GetItem(2, name);
+	ITEM2* newItem = copyItem(it);
+	cout << "Before " << it->pID << endl;
+	cout << "Before " << newItem->pID << endl;
+	char newName[] = "Aqua Green";
+	newItem->pID = newName;
+	cout << "After " << it->pID << endl;
+	cout << "After " << newItem->pID << endl;
 	return 0;
 }

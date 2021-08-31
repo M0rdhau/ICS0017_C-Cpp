@@ -1,2 +1,5 @@
-﻿  Coursework_1.cpp
-  Coursework_1.vcxproj -> C:\Users\Me\Desktop\Viktor\Coursework_1\Debug\Coursework_1.exe
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Coursework_1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Coursework_1.cpp
+  DataStructure.cpp
+  Generating Code...
+  Coursework_1.vcxproj -> C:\Users\Me\Desktop\Viktor\Coursework\Debug\Coursework.exe

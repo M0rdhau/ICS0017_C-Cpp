@@ -143,7 +143,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Coursework_1.cpp" />
-    <ClCompile Include="Coursework_2.cpp" />
     <ClCompile Include="DataStructure.cpp" />
   </ItemGroup>
   <ItemGroup>

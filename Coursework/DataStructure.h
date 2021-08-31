@@ -17,11 +17,11 @@ private:
 	void CreateAHeader(char, HEADER_A*, ITEM2*);
 	ITEM2* FindItem(char*, bool);
 	// Functions for iteration - so that less copy-pasted code occurs
-	void IterItem2(item2*, DataStructure*);
-	void IterHeaderA(HEADER_A*, DataStructure*);
-	void IterHeaderB(HEADER_B*, DataStructure*);
-	void Iterate(DataStructure*);
-	void PrintDataStructure();
+	void IterItem2(item2*, IterOperation, DataStructure*);
+	void IterHeaderA(HEADER_A*, IterOperation, DataStructure*);
+	void IterHeaderB(HEADER_B*, IterOperation, DataStructure*);
+	void Iterate(IterOperation, DataStructure*);
+	void PrintDataStructure() const;
 	int itemAmt = 0;
 	IterOperation op;
 	LastMatch match;
@@ -34,14 +34,17 @@ public:
 	DataStructure(const DataStructure&);
 	~DataStructure();
 	int GetItemsNumber();
-	ITEM2* GetItem(char*);
-	void operator+(ITEM2*);
-	void operator-(char *);
-	DataStructure operator=(const DataStructure&);
-	int operator==(DataStructure&);
-	void Write(char*);
+	ITEM2* GetItem(char* pID) { return FindItem(pID, false); }
+	//DataStructure operator+(ITEM2*);
+	//DataStructure operator-(char *);
+	//DataStructure operator=(const DataStructure&);
+	//int operator==(DataStructure&);
+	//void Write(char*);
 	//print everything to console
-	friend std::ostream& operator<<(std::ostream&, const DataStructure&);
+	friend std::ostream& operator<<(std::ostream& out, const DataStructure& list) {
+		list.PrintDataStructure();
+		return out;
+	}
 };
 
 
