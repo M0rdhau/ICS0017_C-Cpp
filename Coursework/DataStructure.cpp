@@ -1,6 +1,22 @@
 #include "DataStructure.h"
 
-void printItem2(ITEM2* pI, int& n) {
+ITEM2* DataStructure::CopyItem2(ITEM2* p) {
+	ITEM2* it = new ITEM2;
+	it->pNext = 0;
+	int n;
+	char* pNewID = new char[n = strlen(p->pID) + 1];
+	strcpy_s(pNewID, n, p->pID);
+	TIME* time = new TIME;
+	time->Hour = p->pTime->Hour;
+	time->Min = p->pTime->Min;
+	time->Sec = p->pTime->Sec;
+	it->Code = p->Code;
+	it->pID = pNewID;
+	it->pTime = time;
+	return it;
+}
+
+void DataStructure::PrintItem2(ITEM2* pI, int& n) const{
 	n++;
 	char* id = pI->pID;
 	unsigned long int Code = pI->Code;
@@ -20,36 +36,36 @@ void DataStructure::PrintDataStructure() const {
 		while (pA->pNext != 0) {
 			ITEM2* pI = (ITEM2*)pA->pItems;
 			while (pI->pNext != 0) {
-				printItem2(pI, n);
+				this->PrintItem2(pI, n);
 				pI = pI->pNext;
 			}
-			printItem2(pI, n);
+			this->PrintItem2(pI, n);
 			pA = pA->pNext;
 		}
 		ITEM2* pI = (ITEM2*)pA->pItems;
 		while (pI->pNext != 0) {
-			printItem2(pI, n);
+			this->PrintItem2(pI, n);
 			pI = pI->pNext;
 		}
-		printItem2(pI, n);
+		this->PrintItem2(pI, n);
 		pB = pB->pNext;
 	}
 	HEADER_A* pA = pB->pHeaderA;
 	while (pA->pNext != 0) {
 		ITEM2* pI = (ITEM2*)pA->pItems;
 		while (pI->pNext != 0) {
-			printItem2(pI, n);
+			this->PrintItem2(pI, n);
 			pI = pI->pNext;
 		}
-		printItem2(pI, n);
+		this->PrintItem2(pI, n);
 		pA = pA->pNext;
 	}
 	ITEM2* pI = (ITEM2*)pA->pItems;
 	while (pI->pNext != 0) {
-		printItem2(pI, n);
+		this->PrintItem2(pI, n);
 		pI = pI->pNext;
 	}
-	printItem2(pI, n);
+	this->PrintItem2(pI, n);
 	pB = pB->pNext;
 	return;
 }
@@ -73,12 +89,12 @@ void DataStructure::PrintDataStructure() const {
 
 	void DataStructure::CreateBHeader(char first, char second, ITEM2* pI) {
 		HEADER_B* p = EntryP;
-		HEADER_A* newHeader;
+		HEADER_A* newHeader = new HEADER_A;
 		newHeader = (HEADER_A*)malloc(sizeof(HEADER_A));
 		newHeader->cBegin = second;
 		newHeader->pItems = pI;
 		newHeader->pNext = 0;
-		HEADER_B* newBHeader;
+		HEADER_B* newBHeader = new HEADER_B;
 		newBHeader = (HEADER_B*)malloc(sizeof(HEADER_B));
 		newBHeader->cBegin = first;
 		newBHeader->pHeaderA = newHeader;
@@ -205,17 +221,8 @@ void DataStructure::PrintDataStructure() const {
 	}
 
 	void DataStructure::IterItem2(item2* pI, IterOperation it, DataStructure* pComp = 0) {
-		if (it == IterOperation::Count || it == IterOperation::Print) {
+		if (it == IterOperation::Count) {
 			this->itemAmt++;
-			if (it == IterOperation::Print) {
-				char* id = pI->pID;
-				unsigned long int Code = pI->Code;
-				int hour = pI->pTime->Hour;
-				int minute = pI->pTime->Min;
-				int second = pI->pTime->Sec;
-				//printf("%d) %s %u %d:%d:%d \r\n", this->itemAmt, id, Code, hour, minute, second);
-				cout << this->itemAmt << " " << id << " " << Code << " " << hour << " " << minute << " " << second << endl;
-			}
 		}
 		else if (it == IterOperation::Delete) {
 			delete pI->pID;
@@ -226,6 +233,10 @@ void DataStructure::PrintDataStructure() const {
 			if (pOther == 0) {
 				return;
 			}
+		}
+		else if (it == IterOperation::Copy) {
+			ITEM2* newItem = this->CopyItem2(pI);
+			pComp->InsertItem(newItem);
 		}
 		return;
 	}
@@ -300,7 +311,6 @@ void DataStructure::PrintDataStructure() const {
 	DataStructure::DataStructure(char* pFileName) {
 	}
 	DataStructure::DataStructure(const DataStructure& original) {
-
 	}
 	DataStructure::~DataStructure() {
 		Iterate(IterOperation::Delete);

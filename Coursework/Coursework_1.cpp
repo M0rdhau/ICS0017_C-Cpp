@@ -69,12 +69,12 @@ bool validateIDFormat(char* pNewItemID) {
 }
 
 void createBHeader(char first, char second, HEADER_B* p, ITEM2* pI) {
-	HEADER_A *newHeader;
+	HEADER_A *newHeader = new HEADER_A;
 	newHeader = (HEADER_A *)malloc(sizeof(HEADER_A));
 	newHeader->cBegin = second;
 	newHeader->pItems = pI;
 	newHeader->pNext = 0;
-	HEADER_B *newBHeader;
+	HEADER_B *newBHeader = new HEADER_B;
 	newBHeader = (HEADER_B *)malloc(sizeof(HEADER_B));
 	newBHeader->cBegin = first;
 	newBHeader->pHeaderA = newHeader;
@@ -298,34 +298,18 @@ void coursework1() {
 	PrintDataStructure(p);
 }
 
-ITEM2* copyItem(ITEM2* p) {
-	ITEM2* it = new ITEM2;
-	it->pNext = 0;
-	int n;
-	char* pNewID = new char[n = strlen(p->pID) + 1];
-	strcpy_s(pNewID, n, p->pID);
-	TIME* time = new TIME;
-	time->Hour = p->pTime->Hour;
-	time->Min = p->pTime->Min;
-	time->Sec = p->pTime->Sec;
-	it->Code = p->Code;
-	it->pID = pNewID;
-	it->pTime = time;
-	return it;
-}
-
-
+//char name[] = "Phtahlo Blue";
+//ITEM2* it = (ITEM2*)GetItem(2, name);
+//ITEM2* newItem = copyItem(it);
+//cout << "Before " << it->pID << endl;
+//cout << "Before " << newItem->pID << endl;
+//char newName[] = "Aqua Green";
+//newItem->pID = newName;
+//cout << "After " << it->pID << endl;
+//cout << "After " << newItem->pID << endl;
 
 int main()
 {
-	char name[] = "Phtahlo Blue";
-	ITEM2* it = (ITEM2*)GetItem(2, name);
-	ITEM2* newItem = copyItem(it);
-	cout << "Before " << it->pID << endl;
-	cout << "Before " << newItem->pID << endl;
-	char newName[] = "Aqua Green";
-	newItem->pID = newName;
-	cout << "After " << it->pID << endl;
-	cout << "After " << newItem->pID << endl;
+	coursework1();
 	return 0;
 }
