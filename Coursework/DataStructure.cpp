@@ -262,7 +262,48 @@ void DataStructure::PrintItem2(ITEM2* pI, int n) const{
 	}
 	DataStructure::DataStructure(char* pFileName) {
 		FILE* pFile = fopen(pFileName, "rb");
-
+		char* pData;
+		long lSize;
+		if (pFile) {
+			fseek(pFile, 0, SEEK_END);
+			lSize = ftell(pFile);
+			rewind(pFile);
+			cout << lSize << endl;
+			pData = (char*)malloc(lSize);
+			int n = fread(pData, 1, lSize, pFile);
+			fclose(pFile);
+		}
+		else {
+			cout << "file error" << endl;
+			return;
+		}
+		char* cursor;
+		int totalItems = 0;
+		memcpy(&totalItems, cursor = pData, sizeof(int));
+		cursor += sizeof(int);
+		for (int i = 0; i < totalItems; i++) {
+			int pIdSize = 0;
+			char* pID;
+			unsigned long int code = 0;
+			int Hour = 0;
+			int Min = 0;
+			int Sec = 0;
+			memcpy(&pIdSize, cursor, sizeof(int));
+			pID = (char*)malloc(pIdSize * sizeof(char));
+			memcpy(pID, cursor += sizeof(int), pIdSize);
+			memcpy(&code, cursor += pIdSize, sizeof(unsigned long int));
+			memcpy(&Hour, cursor += sizeof(unsigned long int), sizeof(int));
+			memcpy(&Min, cursor += sizeof(int), sizeof(int));
+			memcpy(&Sec, cursor += sizeof(int), sizeof(int));
+			cursor += sizeof(int);
+			ITEM2* p =(ITEM2*) GetItem(2, pID);
+			p->pTime->Hour = Hour;
+			p->pTime->Min = Min;
+			p->pTime->Sec = Sec;
+			p->Code = code;
+			p->pID = pID;
+			this->InsertItem(p);
+		}
 	}
 	DataStructure::DataStructure(const DataStructure& original) {
 		ITEM2** originalItems = original.GetItems();
@@ -353,6 +394,9 @@ void DataStructure::PrintItem2(ITEM2* pI, int n) const{
 			cout << "File not opened" << endl;
 			return;
 		}
+		char* totalNum = (char*)malloc(sizeof(int));
+		memcpy(totalNum, &thisNum, sizeof(int));
+		fwrite(totalNum, 1, sizeof(int), pFile);
 		for (int i = 0; i < thisNum; i++) {
 			int n = 0;
 			char* serialized = this->SerializeItem2(thisList[i], &n);

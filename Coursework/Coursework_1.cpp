@@ -298,16 +298,6 @@ void coursework1() {
 	PrintDataStructure(p);
 }
 
-//char name[] = "Phtahlo Blue";
-//ITEM2* it = (ITEM2*)GetItem(2, name);
-//ITEM2* newItem = copyItem(it);
-//cout << "Before " << it->pID << endl;
-//cout << "Before " << newItem->pID << endl;
-//char newName[] = "Aqua Green";
-//newItem->pID = newName;
-//cout << "After " << it->pID << endl;
-//cout << "After " << newItem->pID << endl;
-
 int main()
 {
 	coursework1();
@@ -320,7 +310,7 @@ int main()
 	*dS+=it;
 	*dS+=(ITEM2*)GetItem(2);
 	cout << *dS << endl;
-	cout << dS->GetItem(name) << endl;
+	cout << dS->GetItemPointer(name) << endl;
 	DataStructure* newS = new DataStructure(*dS);
 	cout << *newS << endl;
 	cout << "newS and dS are equal: " << (*newS == *dS) << endl;
@@ -337,6 +327,10 @@ int main()
 	cout << dSS << endl;
 	char dest[] = "C:\\temp\\data.txt";
 	newS->Write(dest);
+	cout << "Wrote a file" << endl;
+	DataStructure evenNewerS = DataStructure(dest);
+	cout << "From file" << endl;
+	cout << evenNewerS << endl;
 	//delete dS;
 	//cout << *dS << endl;
 	return 0;

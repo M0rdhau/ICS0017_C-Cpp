@@ -11,7 +11,7 @@ enum class LastMatch {Match, NoMatch, Nil};
 class DataStructure
 {
 private:
-	
+	HEADER_B* EntryP;
 	void CreateBHeader(char, char, ITEM2*);
 	void CreateAHeader(char, HEADER_A*, ITEM2*);
 	ITEM2* FindItem(char*, bool);
@@ -24,8 +24,9 @@ private:
 	void PrintItem2(ITEM2*, int) const;
 	void PrintDataStructure() const;
 	char* SerializeItem2(ITEM2*, int*);
+	void InsertItem(ITEM2*);
+	ITEM2** GetItems() const;
 public:
-	HEADER_B* EntryP;
 	//Empty datastructure
 	DataStructure();
 	//Read datastructure from file
@@ -33,10 +34,8 @@ public:
 	//Copy from another datastructure
 	DataStructure(const DataStructure&);
 	~DataStructure();
-	void InsertItem(ITEM2*);
 	int GetItemsNumber() const;
-	ITEM2* GetItem(char* pID) { return FindItem(pID, false); }
-	ITEM2** GetItems() const;
+	ITEM2* GetItemPointer(char* pID) { return FindItem(pID, false); }
 	void operator+=(ITEM2*);
 	void operator-=(char *);
 	DataStructure &operator=(const DataStructure&);
