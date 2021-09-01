@@ -232,16 +232,33 @@ void DataStructure::PrintItem2(ITEM2* pI, int n) const{
 		return itemAmt;
 	}
 
-	void DataStructure::PrintDataStructure() const {
+	ITEM2** DataStructure::GetItems() const{
 		int amt = this->GetItemsNumber();
 		ITEM2** items = (ITEM2**)malloc(amt * sizeof(ITEM2*));
 		int zero = 0;
 		Iterate(IterOperation::List, zero, items);
+		return items;
+	}
+
+	void DataStructure::PrintDataStructure() const {
+		int amt = this->GetItemsNumber();
+		ITEM2** items = this->GetItems();
+		if (amt == 0) return;
 		for (int i = 0; i < amt; i++) {
 			int printNum = i + 1;
 			PrintItem2(items[i], printNum);
 		}
+		return;
 	}
+
+	char* DataStructure::SerializeItem2(ITEM2* pI)
+	{
+		short int n = strlen(pI->pID) + 1;
+		char* itemSer, * r;
+		//itemSer = (char *)malloc(n += sizeof(ITEM2) + 3*sizeof(int) + sizeof(unsigned long int) - sizeof(ITEM2 *) - sizeof(TIME *) )
+	}
+
+
 
 	DataStructure::DataStructure()
 	{
@@ -250,18 +267,73 @@ void DataStructure::PrintItem2(ITEM2* pI, int n) const{
 	DataStructure::DataStructure(char* pFileName) {
 	}
 	DataStructure::DataStructure(const DataStructure& original) {
+		ITEM2** originalItems = original.GetItems();
+		int itemNum = original.GetItemsNumber();
+		for (int i = 0; i < itemNum; i++) {
+			this->InsertItem(this->CopyItem2(originalItems[i]));
+		}
 	}
 	DataStructure::~DataStructure() {
+		ITEM2** items = this->GetItems();
+		int itemNum = this->GetItemsNumber();
+		for (int i = 0; i < itemNum; i++) {
+			this->FindItem(items[i]->pID, true);
+		}
+		delete this->EntryP;
 	}
-	/*DataStructure DataStructure::operator+(ITEM2* p) {
-		return DataStructure(this)
+	void DataStructure::operator+=(ITEM2* p) {
 		this->InsertItem(p);
-	}*/
-	//DataStructure DataStructure::operator-(char* c) {
+		return;
+	}
+	void DataStructure::operator-=(char* c) {
+		this->FindItem(c, true);
+		return;
+	}
 
-	//	this->FindItem(c, true);
-	//	return;
-	//}
-	//ITEM2* DataStructure::GetItem(char* c) {
-	//	this->FindItem(c, false);
-	//}
+	DataStructure& DataStructure::operator=(const DataStructure& s)
+	{
+		ITEM2** items = this->GetItems();
+		int itemNum = this->GetItemsNumber();
+		for (int i = 0; i < itemNum; i++) {
+			this->FindItem(items[i]->pID, true);
+		}
+		this->EntryP = 0;
+		ITEM2** originalItems = s.GetItems();
+		int otherItems = s.GetItemsNumber();
+		for (int i = 0; i < otherItems; i++) {
+			this->InsertItem(this->CopyItem2(originalItems[i]));
+		}
+		return *this;
+	}
+
+
+	int DataStructure::operator==(DataStructure& other)
+	{
+		int thisNum = this->GetItemsNumber();
+		int otherNum = other.GetItemsNumber();
+		if (thisNum == otherNum) {
+			ITEM2** thisList = this->GetItems();
+			for (int i = 0; i < thisNum; i++) {
+				ITEM2* fromThis = thisList[i];
+				ITEM2* fromOther = other.FindItem(thisList[i]->pID, false);
+				if (!(
+					strcmp(fromThis->pID, fromOther->pID)==0 &&
+					fromThis->Code == fromOther->Code &&
+					fromThis->pTime->Hour == fromOther->pTime->Hour &&
+					fromThis->pTime->Min == fromOther->pTime->Min &&
+					fromThis->pTime->Sec == fromOther->pTime->Sec
+					)) {
+					return 0;
+				}
+					
+			}
+		}
+		return 1;
+	}
+
+	void DataStructure::Write(char*)
+	{
+	}
+
+	
+

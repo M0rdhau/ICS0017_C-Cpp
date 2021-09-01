@@ -312,15 +312,30 @@ int main()
 {
 	coursework1();
 	DataStructure* dS = new DataStructure();
+	cout << "print empty" << endl;
 	cout << *dS << endl;
+	cout << "printed" << endl;
 	char name[] = "Phtahlo Blue";
 	ITEM2* it = (ITEM2*)GetItem(2, name);
-	dS->InsertItem(it);
-	dS->InsertItem((ITEM2*)GetItem(2));
-	dS->InsertItem((ITEM2*)GetItem(2));
-	dS->InsertItem((ITEM2*)GetItem(2));
-	dS->InsertItem((ITEM2*)GetItem(2));
+	*dS+=it;
+	*dS+=(ITEM2*)GetItem(2);
 	cout << *dS << endl;
 	cout << dS->GetItem(name) << endl;
+	DataStructure* newS = new DataStructure(*dS);
+	cout << *newS << endl;
+	cout << "newS and dS are equal: " << (*newS == *dS) << endl;
+	*newS+=(ITEM2*)GetItem(2);
+	*newS += (ITEM2*)GetItem(2);
+	cout << *newS << endl;
+	cout << *dS << endl;
+	DataStructure dSS;
+	dSS = *newS;
+	cout << "dSS is now equal to newS" << endl;
+	cout << dSS << endl;
+	dSS += (ITEM2*)GetItem(2);
+	cout << *newS << endl;
+	cout << dSS << endl;
+	//delete dS;
+	//cout << *dS << endl;
 	return 0;
 }
