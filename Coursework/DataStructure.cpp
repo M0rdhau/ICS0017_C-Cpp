@@ -16,8 +16,7 @@ ITEM2* DataStructure::CopyItem2(ITEM2* p) {
 	return it;
 }
 
-void DataStructure::PrintItem2(ITEM2* pI, int& n) const{
-	n++;
+void DataStructure::PrintItem2(ITEM2* pI, int n) const{
 	char* id = pI->pID;
 	unsigned long int Code = pI->Code;
 	int hour = pI->pTime->Hour;
@@ -26,53 +25,8 @@ void DataStructure::PrintItem2(ITEM2* pI, int& n) const{
 	cout << n << " " << id << " " << Code << " " << hour << " " << minute << " " << second << endl;
 }
 
-//This nightmare of a code is here because I had to rewrite functions Iterate... to work as constant
-//functions. Otherwise overloading operator << was no possible
-void DataStructure::PrintDataStructure() const {
-	int n = 0;
-	HEADER_B* pB = this->EntryP;
-	while (pB->pNext != 0) {
-		HEADER_A* pA = pB->pHeaderA;
-		while (pA->pNext != 0) {
-			ITEM2* pI = (ITEM2*)pA->pItems;
-			while (pI->pNext != 0) {
-				this->PrintItem2(pI, n);
-				pI = pI->pNext;
-			}
-			this->PrintItem2(pI, n);
-			pA = pA->pNext;
-		}
-		ITEM2* pI = (ITEM2*)pA->pItems;
-		while (pI->pNext != 0) {
-			this->PrintItem2(pI, n);
-			pI = pI->pNext;
-		}
-		this->PrintItem2(pI, n);
-		pB = pB->pNext;
-	}
-	HEADER_A* pA = pB->pHeaderA;
-	while (pA->pNext != 0) {
-		ITEM2* pI = (ITEM2*)pA->pItems;
-		while (pI->pNext != 0) {
-			this->PrintItem2(pI, n);
-			pI = pI->pNext;
-		}
-		this->PrintItem2(pI, n);
-		pA = pA->pNext;
-	}
-	ITEM2* pI = (ITEM2*)pA->pItems;
-	while (pI->pNext != 0) {
-		this->PrintItem2(pI, n);
-		pI = pI->pNext;
-	}
-	this->PrintItem2(pI, n);
-	pB = pB->pNext;
-	return;
-}
-
 	void DataStructure::CreateAHeader(char second, HEADER_A* p, ITEM2* pI) {
-		HEADER_A* newHeader;
-		newHeader = (HEADER_A*)malloc(sizeof(HEADER_A));
+		HEADER_A* newHeader = new HEADER_A;
 		newHeader->cBegin = second;
 		newHeader->pItems = pI;
 		newHeader->pNext = 0;
@@ -88,24 +42,27 @@ void DataStructure::PrintDataStructure() const {
 	}
 
 	void DataStructure::CreateBHeader(char first, char second, ITEM2* pI) {
-		HEADER_B* p = EntryP;
+		HEADER_B* p = this->EntryP;
 		HEADER_A* newHeader = new HEADER_A;
-		newHeader = (HEADER_A*)malloc(sizeof(HEADER_A));
 		newHeader->cBegin = second;
 		newHeader->pItems = pI;
 		newHeader->pNext = 0;
 		HEADER_B* newBHeader = new HEADER_B;
-		newBHeader = (HEADER_B*)malloc(sizeof(HEADER_B));
 		newBHeader->cBegin = first;
 		newBHeader->pHeaderA = newHeader;
 		newBHeader->pNext = 0;
-		while (p->pNext != 0 && (int)p->pNext->cBegin < (int)first) { p = p->pNext; }
-		if (p->pNext == 0) {
-			p->pNext = newBHeader;
+		if (p == 0) {
+			this->EntryP = newBHeader;
 		}
 		else {
-			newBHeader->pNext = p->pNext;
-			p->pNext = newBHeader;
+			while (p->pNext != 0 && (int)p->pNext->cBegin < (int)first) { p = p->pNext; }
+			if (p->pNext == 0) {
+				p->pNext = newBHeader;
+			}
+			else {
+				newBHeader->pNext = p->pNext;
+				p->pNext = newBHeader;
+			}
 		}
 		return;
 	}
@@ -115,6 +72,11 @@ void DataStructure::PrintDataStructure() const {
 		char first = *pI->pID;
 		char second = *(strchr(pI->pID, ' ') + 1);
 		HEADER_B* searchP = this->EntryP;
+
+		if (this->EntryP == 0) {
+			CreateBHeader(first, second, pI);
+			return;
+		}
 		while (searchP->cBegin != first && searchP->pNext != 0) { searchP = searchP->pNext; }
 		if (searchP->cBegin != first && searchP->pNext == 0) {
 			CreateBHeader(first, second, pI);
@@ -220,88 +182,65 @@ void DataStructure::PrintDataStructure() const {
 		}
 	}
 
-	void DataStructure::IterItem2(item2* pI, IterOperation it, DataStructure* pComp = 0) {
-		if (it == IterOperation::Count) {
-			this->itemAmt++;
+	void DataStructure::IterItem2(item2* pI, IterOperation it, int& amt, ITEM2** arr) const {
+		if (it == IterOperation::List) {
+			arr[amt] = pI;
 		}
-		else if (it == IterOperation::Delete) {
-			delete pI->pID;
-			delete pI->pTime;
-		}
-		else if (it == IterOperation::Compare) {
-			ITEM2* pOther = pComp->GetItem(pI->pID);
-			if (pOther == 0) {
-				return;
-			}
-		}
-		else if (it == IterOperation::Copy) {
-			ITEM2* newItem = this->CopyItem2(pI);
-			pComp->InsertItem(newItem);
-		}
+		amt++;
 		return;
 	}
 
-	void DataStructure::IterHeaderA(HEADER_A* pA, IterOperation it, DataStructure* pComp = 0) {
+	void DataStructure::IterHeaderA(HEADER_A* pA, IterOperation it, int& amt, ITEM2** arr) const {
 		ITEM2* pI = (ITEM2*)pA->pItems;
 		while (pI->pNext != 0) {
-			IterItem2(pI, it, pComp);
-			if (it == IterOperation::Delete) {
-				ITEM2* pPrev = pI;
-				delete(pPrev);
-			}
+			IterItem2(pI, it, amt, arr);
 			pI = pI->pNext;
 		}
-		IterItem2(pI, it, pComp);
-		if (it == IterOperation::Delete) {
-			ITEM2* pPrev = pI;
-			delete(pPrev);
-		}
+		IterItem2(pI, it, amt, arr);
 		return;
 	}
 
-	void DataStructure::IterHeaderB(HEADER_B* p, IterOperation it, DataStructure* pComp = 0) {
+	void DataStructure::IterHeaderB(HEADER_B* p, IterOperation it, int& amt, ITEM2** arr) const {
 		HEADER_A* pA = p->pHeaderA;
 		while (pA->pNext != 0) {
-			IterHeaderA(pA, it, pComp);
-			if (it == IterOperation::Delete) {
-				HEADER_A* pPrev = pA;
-				delete(pPrev);
-			}
+			IterHeaderA(pA, it, amt, arr);
 			pA = pA->pNext;
 		}
-		IterHeaderA(pA, it, pComp);
-		if (it == IterOperation::Delete) {
-			HEADER_A* pPrev = pA;
-			delete(pPrev);
-		}
+		IterHeaderA(pA, it, amt, arr);
 		return;
 	}
 
 
-	void DataStructure::Iterate(IterOperation it, DataStructure* pComp = 0) {
+	void DataStructure::Iterate(IterOperation it, int &amt, ITEM2** arr) const{
 		HEADER_B* pB = this->EntryP;
+		if (pB == 0) {
+			return;
+		}
 		while (pB->pNext != 0) {
-			IterHeaderB(pB, it, pComp);
-			if (it == IterOperation::Delete) {
-				HEADER_B* pPrev = pB;
-				delete(pPrev);
-			}
+			IterHeaderB(pB, it, amt, arr);
 			pB = pB->pNext;
 		}
-		IterHeaderB(pB, it, pComp);
-		if (it == IterOperation::Delete) {
-			HEADER_B* pPrev = pB;
-			delete(pPrev);
-		}
+		IterHeaderB(pB, it, amt, arr);
 		return;
 	}
 
 
 
-	int DataStructure::GetItemsNumber() {
-		this->itemAmt = 0;
-		Iterate(IterOperation::Count);
-		return this->itemAmt;
+	int DataStructure::GetItemsNumber() const{
+		int itemAmt = 0;
+		Iterate(IterOperation::Count, itemAmt, 0);
+		return itemAmt;
+	}
+
+	void DataStructure::PrintDataStructure() const {
+		int amt = this->GetItemsNumber();
+		ITEM2** items = (ITEM2**)malloc(amt * sizeof(ITEM2*));
+		int zero = 0;
+		Iterate(IterOperation::List, zero, items);
+		for (int i = 0; i < amt; i++) {
+			int printNum = i + 1;
+			PrintItem2(items[i], printNum);
+		}
 	}
 
 	DataStructure::DataStructure()
@@ -313,7 +252,6 @@ void DataStructure::PrintDataStructure() const {
 	DataStructure::DataStructure(const DataStructure& original) {
 	}
 	DataStructure::~DataStructure() {
-		Iterate(IterOperation::Delete);
 	}
 	/*DataStructure DataStructure::operator+(ITEM2* p) {
 		return DataStructure(this)

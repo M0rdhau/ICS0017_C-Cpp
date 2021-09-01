@@ -6,7 +6,7 @@
 #include "Headers.h" 
 #include "ICS0017DataSource.h"
 using namespace std;
-enum class IterOperation {Count, Copy, Delete, Compare, None};
+enum class IterOperation {Count, List};
 enum class LastMatch {Match, NoMatch, Nil};
 class DataStructure
 {
@@ -17,15 +17,12 @@ private:
 	ITEM2* FindItem(char*, bool);
 	ITEM2* CopyItem2(ITEM2*);
 	// Functions for iteration - so that less copy-pasted code occurs
-	void IterItem2(item2*, IterOperation, DataStructure*);
-	void IterHeaderA(HEADER_A*, IterOperation, DataStructure*);
-	void IterHeaderB(HEADER_B*, IterOperation, DataStructure*);
-	void Iterate(IterOperation, DataStructure*);
-	void PrintItem2(ITEM2*, int&) const;
+	void IterItem2(item2*, IterOperation, int&, ITEM2**) const;
+	void IterHeaderA(HEADER_A*, IterOperation, int&, ITEM2**) const;
+	void IterHeaderB(HEADER_B*, IterOperation, int &, ITEM2**) const;
+	void Iterate(IterOperation, int&, ITEM2 **) const;
+	void PrintItem2(ITEM2*, int) const;
 	void PrintDataStructure() const;
-	int itemAmt = 0;
-	IterOperation op;
-	LastMatch match;
 public:
 	//Empty datastructure
 	DataStructure();
@@ -35,7 +32,7 @@ public:
 	DataStructure(const DataStructure&);
 	~DataStructure();
 	void InsertItem(ITEM2*);
-	int GetItemsNumber();
+	int GetItemsNumber() const;
 	ITEM2* GetItem(char* pID) { return FindItem(pID, false); }
 	//DataStructure operator+(ITEM2*);
 	//DataStructure operator-(char *);

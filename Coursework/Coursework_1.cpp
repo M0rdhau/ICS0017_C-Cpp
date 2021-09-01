@@ -311,5 +311,16 @@ void coursework1() {
 int main()
 {
 	coursework1();
+	DataStructure* dS = new DataStructure();
+	cout << *dS << endl;
+	char name[] = "Phtahlo Blue";
+	ITEM2* it = (ITEM2*)GetItem(2, name);
+	dS->InsertItem(it);
+	dS->InsertItem((ITEM2*)GetItem(2));
+	dS->InsertItem((ITEM2*)GetItem(2));
+	dS->InsertItem((ITEM2*)GetItem(2));
+	dS->InsertItem((ITEM2*)GetItem(2));
+	cout << *dS << endl;
+	cout << dS->GetItem(name) << endl;
 	return 0;
 }
