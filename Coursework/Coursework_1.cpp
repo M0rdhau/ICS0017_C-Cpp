@@ -335,6 +335,8 @@ int main()
 	dSS += (ITEM2*)GetItem(2);
 	cout << *newS << endl;
 	cout << dSS << endl;
+	char dest[] = "C:\\temp\\data.txt";
+	newS->Write(dest);
 	//delete dS;
 	//cout << *dS << endl;
 	return 0;

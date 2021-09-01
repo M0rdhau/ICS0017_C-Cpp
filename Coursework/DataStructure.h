@@ -23,7 +23,7 @@ private:
 	void Iterate(IterOperation, int&, ITEM2 **) const;
 	void PrintItem2(ITEM2*, int) const;
 	void PrintDataStructure() const;
-	char* SerializeItem2(ITEM2* pI);
+	char* SerializeItem2(ITEM2*, int*);
 public:
 	HEADER_B* EntryP;
 	//Empty datastructure

@@ -1,4 +1,5 @@
 #include "DataStructure.h"
+#pragma warning (disable: 4996)
 
 ITEM2* DataStructure::CopyItem2(ITEM2* p) {
 	ITEM2* it = new ITEM2;
@@ -251,12 +252,7 @@ void DataStructure::PrintItem2(ITEM2* pI, int n) const{
 		return;
 	}
 
-	char* DataStructure::SerializeItem2(ITEM2* pI)
-	{
-		short int n = strlen(pI->pID) + 1;
-		char* itemSer, * r;
-		//itemSer = (char *)malloc(n += sizeof(ITEM2) + 3*sizeof(int) + sizeof(unsigned long int) - sizeof(ITEM2 *) - sizeof(TIME *) )
-	}
+	
 
 
 
@@ -265,6 +261,8 @@ void DataStructure::PrintItem2(ITEM2* pI, int n) const{
 		this->EntryP = 0;
 	}
 	DataStructure::DataStructure(char* pFileName) {
+		FILE* pFile = fopen(pFileName, "rb");
+
 	}
 	DataStructure::DataStructure(const DataStructure& original) {
 		ITEM2** originalItems = original.GetItems();
@@ -331,8 +329,36 @@ void DataStructure::PrintItem2(ITEM2* pI, int n) const{
 		return 1;
 	}
 
-	void DataStructure::Write(char*)
+	char* DataStructure::SerializeItem2(ITEM2* pI, int *m)
 	{
+		int n = strlen(pI->pID) + 1;
+		char* itemSer, * r;
+		*m = n + sizeof(ITEM2) + 3 * sizeof(int) + sizeof(unsigned long int) - sizeof(ITEM2*) - sizeof(TIME*) - sizeof(char*);
+		itemSer = (char*)malloc(*m);
+		memcpy(r = itemSer, &n, sizeof(int));
+		memcpy(r += sizeof(int), pI->pID, n);
+		memcpy(r += n, &pI->Code, sizeof(unsigned long int));
+		memcpy(r += sizeof(unsigned long int), &pI->pTime->Hour, sizeof(int));
+		memcpy(r += sizeof(int), &pI->pTime->Min, sizeof(int));
+		memcpy(r += sizeof(int), &pI->pTime->Sec, sizeof(int));
+		return itemSer;
+	}
+
+	void DataStructure::Write(char* location)
+	{
+		FILE* pFile = fopen(location, "wb");
+		int thisNum = this->GetItemsNumber();
+		ITEM2** thisList = this->GetItems();
+		if (!pFile) {
+			cout << "File not opened" << endl;
+			return;
+		}
+		for (int i = 0; i < thisNum; i++) {
+			int n = 0;
+			char* serialized = this->SerializeItem2(thisList[i], &n);
+			fwrite(serialized, 1, n, pFile);
+		}
+		fclose(pFile);
 	}
 
 	
