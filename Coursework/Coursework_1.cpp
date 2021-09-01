@@ -228,6 +228,41 @@ void RemoveItem(HEADER_B* p, char* pItemID) {
 	}
 }
 
+void oldCoursework2() {
+	DataStructure* dS = new DataStructure();
+	cout << "print empty" << endl;
+	cout << *dS << endl;
+	cout << "printed" << endl;
+	char name[] = "Phtahlo Blue";
+	ITEM2* it = (ITEM2*)GetItem(2, name);
+	*dS += it;
+	*dS += (ITEM2*)GetItem(2);
+	cout << *dS << endl;
+	cout << dS->GetItemPointer(name) << endl;
+	DataStructure* newS = new DataStructure(*dS);
+	cout << *newS << endl;
+	cout << "newS and dS are equal: " << (*newS == *dS) << endl;
+	*newS += (ITEM2*)GetItem(2);
+	*newS += (ITEM2*)GetItem(2);
+	cout << *newS << endl;
+	cout << *dS << endl;
+	DataStructure dSS;
+	dSS = *newS;
+	cout << "dSS is now equal to newS" << endl;
+	cout << dSS << endl;
+	dSS += (ITEM2*)GetItem(2);
+	cout << *newS << endl;
+	cout << dSS << endl;
+	char dest[] = "C:\\temp\\data.txt";
+	newS->Write(dest);
+	cout << "Wrote a file" << endl;
+	DataStructure evenNewerS = DataStructure(dest);
+	cout << "From file" << endl;
+	cout << evenNewerS << endl;
+	//delete dS;
+	//cout << *dS << endl;
+}
+
 void coursework1() {
 	HEADER_B* p = GetStruct1(2, 30);
 	PrintDataStructure(p);
@@ -296,42 +331,35 @@ void coursework1() {
 		printf("invalid operation\n\r");
 	}
 	PrintDataStructure(p);
+	return;
+}
+
+void coursework2() {
+	DataStructure *dataStructure = new DataStructure();
+	for (int i = 0; i < 10; i++) {
+		*dataStructure += (ITEM2*)GetItem(2);
+	}
+	cout << *dataStructure << endl;
+	cout << "Number of items: " << dataStructure->GetItemsNumber() << endl;
+	cout << dataStructure->GetItemPointer((char *)"Light Cyan") << endl;
+	cout << dataStructure->GetItemPointer((char*)"X X") << endl;
+	DataStructure *newDS = new DataStructure(*dataStructure);
+	*dataStructure -= (char*)"Banana Mania";
+	*dataStructure -= (char*)"Vegas Gold";
+	*dataStructure -= (char*)"Persian Green";
+	cout << "Old data structure and new are equal? " << (*newDS == *dataStructure) << endl;
+	dataStructure->Write((char*)"C:\\temp\\data.txt");
+	DataStructure fromFile = DataStructure((char*)"C:\\temp\\data.txt");
+	cout << "Old data structure and one created from file are equal? " << (fromFile == *dataStructure) << endl;
+	fromFile = *newDS;
+	cout << "Assigned 10 item data structure to one created from file " << endl;
+	cout << fromFile << endl;
+	return;
 }
 
 int main()
 {
+	coursework2();
 	coursework1();
-	DataStructure* dS = new DataStructure();
-	cout << "print empty" << endl;
-	cout << *dS << endl;
-	cout << "printed" << endl;
-	char name[] = "Phtahlo Blue";
-	ITEM2* it = (ITEM2*)GetItem(2, name);
-	*dS+=it;
-	*dS+=(ITEM2*)GetItem(2);
-	cout << *dS << endl;
-	cout << dS->GetItemPointer(name) << endl;
-	DataStructure* newS = new DataStructure(*dS);
-	cout << *newS << endl;
-	cout << "newS and dS are equal: " << (*newS == *dS) << endl;
-	*newS+=(ITEM2*)GetItem(2);
-	*newS += (ITEM2*)GetItem(2);
-	cout << *newS << endl;
-	cout << *dS << endl;
-	DataStructure dSS;
-	dSS = *newS;
-	cout << "dSS is now equal to newS" << endl;
-	cout << dSS << endl;
-	dSS += (ITEM2*)GetItem(2);
-	cout << *newS << endl;
-	cout << dSS << endl;
-	char dest[] = "C:\\temp\\data.txt";
-	newS->Write(dest);
-	cout << "Wrote a file" << endl;
-	DataStructure evenNewerS = DataStructure(dest);
-	cout << "From file" << endl;
-	cout << evenNewerS << endl;
-	//delete dS;
-	//cout << *dS << endl;
 	return 0;
 }

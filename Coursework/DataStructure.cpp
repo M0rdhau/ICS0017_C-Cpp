@@ -69,7 +69,7 @@ void DataStructure::PrintItem2(ITEM2* pI, int n) const{
 	}
 
 	void DataStructure::InsertItem(ITEM2* pI) {
-		printf("\r\n Item name: %s\r\n", pI->pID);
+		//printf("\r\n Item name: %s\r\n", pI->pID);
 		char first = *pI->pID;
 		char second = *(strchr(pI->pID, ' ') + 1);
 		HEADER_B* searchP = this->EntryP;
@@ -99,7 +99,7 @@ void DataStructure::PrintItem2(ITEM2* pI, int n) const{
 					return;
 				}
 				else {
-					throw 1337;
+					throw exception("Item Exists");
 				}
 			}
 		}
@@ -268,7 +268,6 @@ void DataStructure::PrintItem2(ITEM2* pI, int n) const{
 			fseek(pFile, 0, SEEK_END);
 			lSize = ftell(pFile);
 			rewind(pFile);
-			cout << lSize << endl;
 			pData = (char*)malloc(lSize);
 			int n = fread(pData, 1, lSize, pFile);
 			fclose(pFile);
@@ -366,8 +365,9 @@ void DataStructure::PrintItem2(ITEM2* pI, int n) const{
 				}
 					
 			}
+			return 1;
 		}
-		return 1;
+		return 0;
 	}
 
 	char* DataStructure::SerializeItem2(ITEM2* pI, int *m)
@@ -404,6 +404,3 @@ void DataStructure::PrintItem2(ITEM2* pI, int n) const{
 		}
 		fclose(pFile);
 	}
-
-	
-
